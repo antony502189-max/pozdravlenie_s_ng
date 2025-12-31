@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Новым Годом, Даша! 🎄</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(to bottom, #e0f7fa, #f8f9fa); 
+            color: #2c3e50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 90%;
+            padding: 30px 20px;
+            z-index: 1;
+        }
+
+        #text, #second-text {
+            font-size: 1.3em;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            transition: opacity 0.5s ease;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); 
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* Модальное окно со вторым текстом — как на фото */
+#second-text {
+    background: rgba(255, 255, 255, 0.92);     /* Почти белая полупрозрачная карточка */
+    padding: 32px 48px;                        /* Больше внутреннего отступа для воздуха */
+    border-radius: 32px;                       /* Сильное скругление углов */
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12); /* Мягкая, объёмная тень */
+    text-align: center;
+    max-width: 85%;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    opacity: 0;
+    transition: all 0.6s ease;
+    pointer-events: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    z-index: 20;
+}
+
+#second-text.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+/* Текст в кавычках */
+#second-text .quote {
+    display: block;
+    font-size: 1.55em;         /* Крупнее основной текст */
+    color: #ff69b4;            /* Нежный розовый */
+    margin-bottom: 16px;
+}
+
+/* Таймкод под ним */
+#second-text .time {
+    display: block;
+    font-size: 1.3em;          /* Заметно, но меньше названия */
+    color: #ff1493;            /* Чуть ярче розовый */
+    font-style: normal;
+    opacity: 0.9;
+}
+
+        #text.visible, #second-text.visible {
+            opacity: 1;
+        }
+
+        #gift {
+            display: none;
+            margin-top: 40px;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+
+        #gift img {
+            width: 120px;
+            height: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+        #gift p {
+            margin-top: 10px;
+            font-size: 1.1em;
+            color: #e91e63;
+            font-style: italic;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -30px;
+            color: #ffffff;
+            font-size: 1.8em;
+            animation: fall linear infinite;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            #text, #second-text {
+                font-size: 1.1em;
+                padding: 15px;
+            }
+            #gift img {
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="text"></div>
+        <div id="gift">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/023/629/687/small/flat-gift-box-icon-with-transparent-background-free-png.png" alt="Подарок 🎁">
+            <p>Нажми на меня! ✨</p>
+        </div>
+        <div class="overlay" id="overlay">
+            <div id="second-text"></div>
+        </div>
+    </div>
+
+    <div class="snowflake" style="left: 5%; animation-duration: 12s; animation-delay: 0s;">❄️</div>
+    <div class="snowflake" style="left: 15%; animation-duration: 18s; animation-delay: 2s;">❄️</div>
+    <div class="snowflake" style="left: 25%; animation-duration: 14s; animation-delay: 1s;">❄️</div>
+    <div class="snowflake" style="left: 35%; animation-duration: 20s; animation-delay: 4s;">❄️</div>
+    <div class="snowflake" style="left: 45%; animation-duration: 16s; animation-delay: 0s;">❄️</div>
+    <div class="snowflake" style="left: 55%; animation-duration: 15s; animation-delay: 3s;">❄️</div>
+    <div class="snowflake" style="left: 65%; animation-duration: 13s; animation-delay: 5s;">❄️</div>
+    <div class="snowflake" style="left: 75%; animation-duration: 19s; animation-delay: 1s;">❄️</div>
+    <div class="snowflake" style="left: 85%; animation-duration: 17s; animation-delay: 2s;">❄️</div>
+    <div class="snowflake" style="left: 95%; animation-duration: 11s; animation-delay: 4s;">❄️</div>
+
+    <script>
+        const firstText = "Ну что, с новым годом, Даша! 🥳\n\nЖелаю тебе, чтобы всё задуманное сбылось.\n\nИ да, спасибо, что скрасила мои последние пару месяцев — это ценно.\n\nНадеюсь, в следующем продолжим в том же духе, и возможно станем чем-то большим)";
+        
+        const secondText = '<span class="quote">«Анатомия любви»</span><span class="time">32:50</span>';
+
+        let i = 0;
+        const textElement = document.getElementById('text');
+        const giftElement = document.getElementById('gift');
+        const secondTextElement = document.getElementById('second-text');
+
+        function typeWriter() {
+            if (i < firstText.length) {
+                textElement.innerHTML += firstText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 60); 
+            } else {
+                textElement.classList.add('visible');
+                giftElement.style.display = 'block';
+            }
+        }
+
+        window.onload = () => {
+            textElement.style.opacity = '1';
+            setTimeout(typeWriter, 500); 
+        };
+
+        giftElement.addEventListener('click', function() {
+    giftElement.style.opacity = '0';
+    setTimeout(() => {
+        giftElement.style.display = 'none';
+
+        secondTextElement.innerHTML = secondText;
+
+        document.getElementById('overlay').classList.add('active');
+        secondTextElement.classList.add('active');
+    }, 500);
+});
+       
+        giftElement.addEventListener('click', function() {
+    giftElement.style.opacity = '0';
+    setTimeout(() => {
+        giftElement.style.display = 'none';
+
+        secondTextElement.innerHTML = secondText;
+
+        document.getElementById('overlay').classList.add('active');
+        secondTextElement.classList.add('active');
+    }, 500);
+});
+    </script>
+</body>
+</html>
